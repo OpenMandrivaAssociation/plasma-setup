@@ -31,10 +31,6 @@ BuildSystem:	cmake
 BuildOption:	-DBUILD_TESTING:BOOL=OFF
 BuildOption:	-DKDE_INSTALL_USE_QT_SYS_PATHS:BOOL=ON
 
-%install -a
-# Qt6 QML plugin leftover; not a public library
-rm -f %{buildroot}%{_libdir}/libcomponentspluginplugin.a
-
 Requires:	dbus-common
 Requires:	polkit
 
@@ -60,3 +56,5 @@ language, keyboard, time zone and network.
 %{_unitdir}/plasma-setup.service
 %{_sysusersdir}/plasma-setup-sysuser.conf
 %{_tmpfilesdir}/plasma-setup-tmpfiles.conf
+# Qt6 QML plugin leftover; not a public library
+%exclude %{_libdir}/libcomponentspluginplugin.a
