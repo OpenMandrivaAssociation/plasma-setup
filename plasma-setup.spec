@@ -31,6 +31,10 @@ BuildSystem:	cmake
 BuildOption:	-DBUILD_TESTING:BOOL=OFF
 BuildOption:	-DKDE_INSTALL_USE_QT_SYS_PATHS:BOOL=ON
 
+%install -a
+# Qt6 QML plugin leftover; not a public library
+rm -f %{buildroot}%{_libdir}/libcomponentspluginplugin.a
+
 Requires:	dbus-common
 Requires:	polkit
 
@@ -40,8 +44,8 @@ Guides the user through creating the first account and configuring
 language, keyboard, time zone and network.
 
 %files -f %{name}.lang
-%{_libexecdir}/plasma-setup
-%{_libexecdir}/plasma-setup-bootutil
+%{_libdir}/libexec/plasma-setup
+%{_libdir}/libexec/plasma-setup-bootutil
 %{_libdir}/libexec/kf6/kauth/plasma-setup*
 %{_qtdir}/qml/org/kde/plasmasetup
 %{_qtdir}/plugins/kf6/packagestructure/plasmasetup.so
@@ -54,5 +58,5 @@ language, keyboard, time zone and network.
 %{_datadir}/qlogging-categories6/plasmasetup.categories
 %config(noreplace) %{_sysconfdir}/xdg/plasmasetuprc
 %{_unitdir}/plasma-setup.service
-%{_sysusersdir}/plasma-setup.conf
-%{_tmpfilesdir}/plasma-setup.conf
+%{_sysusersdir}/plasma-setup-sysuser.conf
+%{_tmpfilesdir}/plasma-setup-tmpfiles.conf
