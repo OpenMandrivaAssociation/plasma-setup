@@ -25,6 +25,7 @@ BuildRequires:	cmake(KF6Package)
 BuildRequires:	cmake(KF6Config)
 BuildRequires:	cmake(KF6Screen)
 BuildRequires:	cmake(LibKWorkspace)
+BuildRequires:	qt6qml(org.kde.plasma.private.kcm_keyboard)
 
 BuildSystem:	cmake
 BuildOption:	-DBUILD_TESTING:BOOL=OFF
