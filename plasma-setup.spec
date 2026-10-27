@@ -3,7 +3,7 @@
 
 Summary:	Initial setup wizard for Plasma
 Name:		plasma-setup
-Version:	6.8.1
+Version:	6.8.2
 Release:	1
 License:	GPLv2+
 Group:		Graphical desktop/KDE
