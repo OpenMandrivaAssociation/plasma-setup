@@ -4,11 +4,13 @@
 Summary:	Initial setup wizard for Plasma
 Name:		plasma-setup
 Version:	6.8.2
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Graphical desktop/KDE
 URL:		https://invent.kde.org/plasma/plasma-setup
 Source0:	http://download.kde.org/%{stable}/plasma/%{plasmaver}/%{name}-%{version}.tar.xz
+# QtGui is not a QML module; the generated qmldir must not depend on it
+Patch0:	plasma-setup-qtgui-qmldep.patch
 
 BuildRequires:	cmake(ECM)
 BuildRequires:	cmake(Qt6Core)

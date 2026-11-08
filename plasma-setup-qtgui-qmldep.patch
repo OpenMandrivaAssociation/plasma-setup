@@ -1,0 +1,20 @@
+Qt 6 does not ship a QML module named QtGui. ecm_add_qml_module
+DEPENDENCIES QtGui still writes "depends QtGui" into the embedded
+qmldir. The QML engine does not load that line; qmlimportscanner
+and the RPM generator do. Nothing provides qml(QtGui), so
+plasma-setup cannot be installed. No QML type here exposes a QtGui
+class, and the QML files do not import QtGui.
+
+diff -up plasma-setup-6.8.2/src/CMakeLists.txt.qtgui plasma-setup-6.8.2/src/CMakeLists.txt
+--- plasma-setup-6.8.2/src/CMakeLists.txt.qtgui	2026-10-27 12:31:00.000000000 +0100
++++ plasma-setup-6.8.2/src/CMakeLists.txt	2026-11-08 22:10:00.000000000 +0100
+@@ -33,8 +33,7 @@ add_executable(plasma-setup
+ 
+ ecm_add_qml_module(plasma-setup GENERATE_PLUGIN_SOURCE
+     URI "org.kde.plasmasetup"
+-    DEPENDENCIES
+-        QtGui
++    DEPENDENCIES
+         QtQuick
+ )
+ 
